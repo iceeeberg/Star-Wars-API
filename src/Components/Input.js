@@ -3,8 +3,10 @@ import React from 'react'
 function Input (){
   return (
   <div>
-    <input placeholder="Search Character..."></input>
-    <button type ="submit" value="Submit Search">Search</button>
+    <form>
+      <input name="character" placeholder="Search Character..."></input>
+      <button type ="submit" name="submit">Search</button>
+      </form>
   </div>
   )
 }
