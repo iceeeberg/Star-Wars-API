@@ -5,13 +5,16 @@ import axios from 'axios';
 import Input from './Components/Input'
 import Table from './Components/Table'
 
-function App() {
-  const [page, setPage] = useState(1);
+let url = 'https://swapi.dev/api/people/';
+
+const App = () => {
+  const [characters, setCharacters] = useState([]);
 
 useEffect(() => {
-  fetch (
-    'https://swapi.dev/api/people/'
-  )
+  fetch(url)
+  .then(results => results.json())
+  .then(json => json.characters)
+  .then(characters => setCharacters({'characters': characters}))
 }, [])
 
   return (
@@ -20,7 +23,7 @@ useEffect(() => {
         <h1>Star Wars</h1>
       </header>
       <Input />
-      <Table />
+      <Table characters={characters} />
     </div>
   );
 }
