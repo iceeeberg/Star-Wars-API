@@ -6,8 +6,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Input from './Components/Input'
 import Table from './Components/Table'
 
-let peopleURL = 'https://swapi.dev/api/people/';
-let planetURL = 'https://swapi.dev/api/planets/';
+const peopleURL = 'https://swapi.dev/api/people/';
+const planetURL = 'https://swapi.dev/api/planets/';
 
 const App = () => {
   const [characters, setCharacters] = useState([]);
@@ -22,7 +22,7 @@ useEffect(() => {
 }, [characters])
 
 const getPlanetData = async (characters) =>{
-  characters.homeworld = await planetData(characters.homeworld)
+  characters.homeworld = await planetURL(characters.homeworld)
 }
 
 const planetData = () => {
