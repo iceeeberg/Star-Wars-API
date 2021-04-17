@@ -7,7 +7,7 @@ import Table from './Components/Table'
 
 let url = 'https://swapi.dev/api/people/';
 
-const App = (props) => {
+const App = () => {
   const [characters, setCharacters] = useState([]);
 
 useEffect(() => {
