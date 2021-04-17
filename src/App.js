@@ -7,14 +7,16 @@ import Table from './Components/Table'
 
 let url = 'https://swapi.dev/api/people/';
 
-const App = () => {
+const App = (props) => {
   const [characters, setCharacters] = useState([]);
 
 useEffect(() => {
   fetch(url)
   .then(results => results.json())
-  .then(json => json.characters)
-  .then(characters => setCharacters({'characters': characters}))
+  .then(characters => {
+  // console.log('characters:' , characters.results)
+  setCharacters({characters: characters.results})
+  })
 }, [])
 
   return (

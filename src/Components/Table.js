@@ -1,8 +1,8 @@
 import React from "react"
 
-function Table () {
+const Table = (props) => {
 
-  return character.map(i => {
+  return props.characters.map((character) => {
 
   return (
     <div>
@@ -18,7 +18,7 @@ function Table () {
           </tr>
         </thead>
         <tbody>
-          <tr key={i}>
+          <tr key={character.id}>
             <td>{character.id}</td>
             <td>{character.name}</td>
             <td>{character.birth_year}</td>
