@@ -5,8 +5,8 @@ const Table = (props) => {
   return props.characters.map((character) => {
 
   return (
-    <div>
-      <table>
+    <div id="table" className="container">
+      <table className="table table-sm table-striped table-hover">
         <thead>
           <tr>
             <th>Name</th>
@@ -19,7 +19,6 @@ const Table = (props) => {
         </thead>
         <tbody>
           <tr key={character.id}>
-            <td>{character.id}</td>
             <td>{character.name}</td>
             <td>{character.birth_year}</td>
             <td>{character.height}</td>
