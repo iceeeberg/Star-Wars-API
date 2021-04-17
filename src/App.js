@@ -15,7 +15,7 @@ useEffect(() => {
   .then(results => results.json())
   .then(characters => {
   // console.log('characters:' , characters.results)
-  setCharacters({characters: characters.results})
+  setCharacters(characters.results)
   })
 }, [])
 
