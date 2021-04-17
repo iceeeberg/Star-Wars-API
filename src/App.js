@@ -9,14 +9,6 @@ import Table from './Components/Table'
 let peopleURL = 'https://swapi.dev/api/people/';
 let planetURL = 'https://swapi.dev/api/planets/';
 
-const planetData = () => {
-  fetch(planetURL)
-  .then(results => results.json)
-  .then(planet => {
-    planet(characters.homeworld)
-  })
-}
-
 const App = () => {
   const [characters, setCharacters] = useState([]);
 
@@ -24,13 +16,21 @@ useEffect(() => {
   fetch(peopleURL)
   .then(results => results.json())
   .then(characters => {
-  console.log('characters:' , characters.results)
   setCharacters(characters.results)
+  console.log('characters:' , characters.results)
   })
 }, [characters])
 
 const getPlanetData = async (characters) =>{
   characters.homeworld = await planetData(characters.homeworld)
+}
+
+const planetData = () => {
+  fetch(planetURL)
+  .then(results => results.json)
+  .then(planet => {
+    planet(characters.homeworld)
+  })
 }
 
   return (
