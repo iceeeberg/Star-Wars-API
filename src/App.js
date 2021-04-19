@@ -6,6 +6,8 @@ import Input from './Components/Input'
 import Table from './Components/Table'
 
 const peopleURL = 'https://swapi.dev/api/people/';
+const planetURL = 'http://swapi.dev/api/planets/';
+const speciesURL = 'http://swapi.dev/api/species/';
 
 const App = () => {
   const [characters, setCharacters] = useState([]);
@@ -13,11 +15,34 @@ const App = () => {
   useEffect(() => {
     fetch(peopleURL)
       .then((results) => results.json())
-      .then((characters) => {
-        setCharacters(characters.results)
-   // console.log('characters:', characters.results)
+      .then((data) => {
+        let characters = data.results
+        setCharacters(characters)
   })
 }, [characters])
+
+const getOtherData = async (characters) => {
+  for (const character of characters){
+    character.homeworld = await getPlanets(character.homeworld)
+    character.species = await getSpecies(character.species)
+  }
+  return characters
+}
+
+const getPlanets = async (planetURL) => {
+  const response = await axios
+    .get(planetURL.replace('http', 'https'));
+  return response.name;
+}
+
+const getSpecies = async (speciesURL) => {
+  if (speciesURL.length === 0){
+    return "Human"
+  }
+  const response = await axios
+    .get(speciesURL.replace('http', 'https'));
+  return response.name;
+}
 
   return (
     <div>
