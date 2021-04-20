@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import ReactPaginate from 'react-paginate';
 import './App.css';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -6,43 +7,37 @@ import Input from './Components/Input'
 import Table from './Components/Table'
 
 const peopleURL = 'https://swapi.dev/api/people/';
-const planetURL = 'http://swapi.dev/api/planets/';
-const speciesURL = 'http://swapi.dev/api/species/';
 
 const App = () => {
   const [characters, setCharacters] = useState([]);
-
+  
   useEffect(() => {
-    fetch(peopleURL)
-      .then((results) => results.json())
-      .then((data) => {
-        let characters = data.results
-        setCharacters(characters)
-  })
-}, [characters])
+    axios.get(peopleURL)
+      .then((res) => getOtherData(res.data.results))
+  }, []);
 
-const getOtherData = async (characters) => {
-  for (const character of characters){
-    character.homeworld = await getPlanets(character.homeworld)
-    character.species = await getSpecies(character.species)
+  const getOtherData = async (characters) => {
+    for (const character of characters) {
+      await getPlanets(character);
+      await getSpecies(character)
+      setCharacters(characters)
+    }
   }
-  return characters
-}
 
-const getPlanets = async (planetURL) => {
-  const response = await axios
-    .get(planetURL.replace('http', 'https'));
-  return response.name;
-}
-
-const getSpecies = async (speciesURL) => {
-  if (speciesURL.length === 0){
-    return "Human"
+  const getPlanets = async (character) => {
+   const planet = character.homeworld
+   const response = await axios.get(planet)
+   character.homeworld = response.data.name
+  };
+  
+  const getSpecies = async (character) => {
+    if (character.species.length === 0){
+      character.species = "Human"
+    } else {
+    const response = await axios.get(character.species);
+    character.species = response.data.name
+    }
   }
-  const response = await axios
-    .get(speciesURL.replace('http', 'https'));
-  return response.name;
-}
 
   return (
     <div>
