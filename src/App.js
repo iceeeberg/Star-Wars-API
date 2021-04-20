@@ -20,8 +20,8 @@ const App = () => {
     for (const character of characters) {
       await getPlanets(character);
       await getSpecies(character);
-      setCharacters(characters);
     };
+    setCharacters(characters);
   };
 
   const getPlanets = async (character) => {

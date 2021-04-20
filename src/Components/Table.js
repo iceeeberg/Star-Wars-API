@@ -1,7 +1,7 @@
 import React from "react"
 
 const Table = (props) => {
- const tableBody = props.characters.map((character) => {
+ const tableBody = props.characters.map((character) => (
   <tr key={character.id}>
     <td>{character.name}</td>
     <td>{character.birth_year}</td>
@@ -10,7 +10,7 @@ const Table = (props) => {
     <td>{character.homeworld}</td>
     <td>{character.species}</td>
   </tr>
- });
+ ));
 return (
     <div id="table" className="container">
       <table className="table table-sm table-striped table-hover">
