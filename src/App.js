@@ -19,25 +19,25 @@ const App = () => {
   const getOtherData = async (characters) => {
     for (const character of characters) {
       await getPlanets(character);
-      await getSpecies(character)
-      setCharacters(characters)
-    }
-  }
+      await getSpecies(character);
+      setCharacters(characters);
+    };
+  };
 
   const getPlanets = async (character) => {
-   const planet = character.homeworld
-   const response = await axios.get(planet)
-   character.homeworld = response.data.name
+   const planet = character.homeworld;
+   const response = await axios.get(planet);
+   character.homeworld = response.data.name;
   };
   
   const getSpecies = async (character) => {
     if (character.species.length === 0){
-      character.species = "Human"
+      character.species = "Human";
     } else {
     const response = await axios.get(character.species);
     character.species = response.data.name
-    }
-  }
+    };
+  };
 
   return (
     <div>
