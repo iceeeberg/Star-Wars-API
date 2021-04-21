@@ -1,8 +1,8 @@
-body{
-  color: black;
-}
-
 h1{
   color:	#FFFF33;
+  font-weight: 2em;
 }
 
+html body{
+  background-color: black;
+}

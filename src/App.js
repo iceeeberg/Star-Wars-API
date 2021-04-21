@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Input from './Components/Input'
 import Table from './Components/Table'
 
+
 const App = () => {
   const [characters, setCharacters] = useState([]);
   const [search, setSearch] = useState("");
@@ -48,7 +49,7 @@ const handlePageChange = (pageNumber) => {
 }
 
 const handleSearch = (search) => {
-  axios.get(`https://swapi.dev/api/people/?page=${search}`)
+  axios.get(`https://swapi.dev/api/people/?search=${search}`)
   .then((res) => getOtherData(res.data.results))
 }
 
@@ -60,6 +61,7 @@ const handleSearch = (search) => {
       <Input 
       setSearch={setSearch}
       />
+      <br></br>
       <Table characters={characters} />
       <ReactPaginate
       pageCount="9"
