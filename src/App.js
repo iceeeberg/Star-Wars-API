@@ -55,9 +55,10 @@ const handleSearch = (search) => {
 
   return (
     <div>
-      <header>
-        <h1>Star Wars</h1>
+      <header className="text-center">
+        <h1 className="font-weight-bold">Star Wars</h1>
       </header>
+      <br></br>
       <Input 
       setSearch={setSearch}
       />
