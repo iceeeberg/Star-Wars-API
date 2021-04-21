@@ -6,15 +6,18 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Input from './Components/Input'
 import Table from './Components/Table'
 
-const peopleURL = 'https://swapi.dev/api/people/';
-
 const App = () => {
   const [characters, setCharacters] = useState([]);
-  
+  const [search, setSearch] = useState("");
+ 
   useEffect(() => {
-    axios.get(peopleURL)
+    axios.get('https://swapi.dev/api/people/')
       .then((res) => getOtherData(res.data.results))
   }, []);
+
+  useEffect(() => {
+    handleSearch(search)
+  }, [search])
 
   const getOtherData = async (characters) => {
     for (const character of characters) {
@@ -39,13 +42,37 @@ const App = () => {
     };
   };
 
+const handlePageChange = (pageNumber) => {
+  axios.get(`https://swapi.dev/api/people/?page=${pageNumber}`)
+  .then((res) => getOtherData(res.data.results))
+}
+
+const handleSearch = (search) => {
+  axios.get(`https://swapi.dev/api/people/?page=${search}`)
+  .then((res) => getOtherData(res.data.results))
+}
+
   return (
     <div>
       <header>
         <h1>Star Wars</h1>
       </header>
-      <Input />
+      <Input 
+      setSearch={setSearch}
+      />
       <Table characters={characters} />
+      <ReactPaginate
+      pageCount="9"
+      onPageChange={({ selected }) => {
+        handlePageChange(selected + 1);
+      }}
+      containerClassName ="pagination justify-content-center" 
+      className="page-item active"
+      previousLinkClassName ="page-link"  
+      pageClassName ="page-link" aria-hidden="true"
+      nextLinkClassName ="page-link" 
+      activeClassName ="active"
+      />
     </div>
   );
 }
