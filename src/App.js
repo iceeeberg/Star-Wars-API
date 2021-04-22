@@ -12,7 +12,7 @@ const App = () => {
   const [search, setSearch] = useState("");
  
   useEffect(() => {
-    axios.get('https://swapi.dev/api/people/')
+    axios.get('https://swapi.dev/api/people/'.replace('http', 'https'))
       .then((res) => getOtherData(res.data.results))
   }, []);
 
@@ -30,7 +30,7 @@ const App = () => {
 
   const getPlanets = async (character) => {
    const planet = character.homeworld;
-   const response = await axios.get(planet);
+   const response = await axios.get(planet.replace('http', 'https'));
    character.homeworld = response.data.name;
   };
   
@@ -38,18 +38,18 @@ const App = () => {
     if (character.species.length === 0){
       character.species = "Human";
     } else {
-    const response = await axios.get(character.species);
+    const response = await axios.get(character.species.replace('http', 'https'));
     character.species = response.data.name
     };
   };
 
 const handlePageChange = (pageNumber) => {
-  axios.get(`https://swapi.dev/api/people/?page=${pageNumber}`)
+  axios.get(`https://swapi.dev/api/people/?page=${pageNumber}`.replace('http', 'https'))
   .then((res) => getOtherData(res.data.results))
 }
 
 const handleSearch = (search) => {
-  axios.get(`https://swapi.dev/api/people/?search=${search}`)
+  axios.get(`https://swapi.dev/api/people/?search=${search}`.replace('http', 'https'))
   .then((res) => getOtherData(res.data.results))
 }
 
