@@ -12,7 +12,7 @@ const App = () => {
   const [search, setSearch] = useState("");
  
   useEffect(() => {
-    axios.get('https://swapi.dev/api/people/'.replace('http', 'https'))
+    axios.get('https://swapi.dev/api/people/')
       .then((res) => getOtherData(res.data.results))
   }, []);
 
