@@ -13,4 +13,4 @@ Another React project I would say was the most challenging app I have ever built
 ## Author
 
 Dante Leeseberg - Full Stack Software Developer [LinkedIn](https://www.linkedin.com/in/dante-leeseberg-bba05883/)
-| Website coming soon.
+| [Website](https://www.danteleeseberg.com/)
