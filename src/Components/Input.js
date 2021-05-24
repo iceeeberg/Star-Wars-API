@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
-const Input = ({ setSearch }) => {
+const Input = ({ search }) => {
 	const [ input, setInput ] = useState('');
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		setSearch(input);
+		search(input);
 	};
 
 	return (
@@ -19,7 +19,7 @@ const Input = ({ setSearch }) => {
 					onChange={(e) => setInput(e.target.value)}
 				/>
 					<button 
-            class="btn btn-primary mb-2" 
+            className="btn btn-primary mb-2" 
             type="submit" 
             name="submit">
 						Search
