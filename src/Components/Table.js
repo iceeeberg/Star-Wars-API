@@ -2,7 +2,7 @@ import React from "react"
 
 const Table = (props) => {
  const tableBody = props.characters.map((character) => (
-  <tr key={character.id}>
+  <tr key={character.name}>
     <td>{character.name}</td>
     <td>{character.birth_year}</td>
     <td>{character.height}</td>
