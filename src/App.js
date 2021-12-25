@@ -28,7 +28,7 @@ const App = () => {
   };
 
   const getHomeWorld = async (homeWorldUrl) => {
-   const homeWorldURLHttps = homeWorldUrl.replace('http', 'https')
+   const homeWorldURLHttps = homeWorldUrl.replace('https', 'https')
    const response = await axios.get(homeWorldURLHttps);
    return response.data.name;
   };
@@ -37,7 +37,7 @@ const App = () => {
     if (speciesArray.length === 0){
       return "Human";
     } else {
-    const speciesURL = speciesArray[0].replace("http", "https")
+    const speciesURL = speciesArray[0].replace("https", "https")
     const response = await axios.get(speciesURL);
     return response.data.name
     };
@@ -45,12 +45,12 @@ const App = () => {
 
 const handlePageChange = (pageNumber) => {
   axios.get(`https://swapi.dev/api/people/?page=${pageNumber}`)
-  .then((res) => setMissingHomeWorldAndSpecies(res.data.results))
+  .then((res) =>  setMissingHomeWorldAndSpecies(res.data.results))
 }
 
 const handleSearch = (search) => {
   axios.get(`https://swapi.dev/api/people/?search=${search}`)
-  .then((res) => setMissingHomeWorldAndSpecies(res.data.results))
+  .then((res)  => setMissingHomeWorldAndSpecies(res.data.results))
 }
 
 const calculateNumPages = (count) => {
