@@ -28,7 +28,7 @@ const App = () => {
   };
 
   const getHomeWorld = async (homeWorldUrl) => {
-   const homeWorldURLHttps = homeWorldUrl.replace('https', 'https')
+   const homeWorldURLHttps = homeWorldUrl.replace('https', 'http')
    const response = await axios.get(homeWorldURLHttps);
    return response.data.name;
   };
@@ -37,7 +37,7 @@ const App = () => {
     if (speciesArray.length === 0){
       return "Human";
     } else {
-    const speciesURL = speciesArray[0].replace("https", "https")
+    const speciesURL = speciesArray[0].replace("https", "http")
     const response = await axios.get(speciesURL);
     return response.data.name
     };
