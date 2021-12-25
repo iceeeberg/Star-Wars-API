@@ -28,7 +28,7 @@ const App = () => {
   };
 
   const getHomeWorld = async (homeWorldUrl) => {
-  //  const homeWorldURLHttps = homeWorldUrl.replace('https', 'http')
+  //  const homeWorldURLHttps = homeWorldUrl.replace('http', 'https')
    const response = await axios.get(homeWorldUrl);
    return response.data.name;
   };
