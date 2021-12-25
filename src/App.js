@@ -11,7 +11,7 @@ const App = () => {
   const [pageCount, setPageCount] = useState(0);
  
   useEffect(() => {
-    axios.get('https://swapi.dev/api/people/')
+    axios.get('http://swapi.dev/api/people/')
       .then((res) =>  {
         const numberOfPages =  calculateNumPages(res.data.count)
         setPageCount(numberOfPages)
@@ -44,12 +44,12 @@ const App = () => {
   };
 
 const handlePageChange = (pageNumber) => {
-  axios.get(`https://swapi.dev/api/people/?page=${pageNumber}`)
+  axios.get(`http://swapi.dev/api/people/?page=${pageNumber}`)
   .then((res) =>  setMissingHomeWorldAndSpecies(res.data.results))
 }
 
 const handleSearch = (search) => {
-  axios.get(`https://swapi.dev/api/people/?search=${search}`)
+  axios.get(`http://swapi.dev/api/people/?search=${search}`)
   .then((res)  => setMissingHomeWorldAndSpecies(res.data.results))
 }
 
